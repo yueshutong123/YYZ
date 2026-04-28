@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Depression Detection System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>抑郁症检测系统</h1>
+            <p class="subtitle">基于多模态音视频特征分析</p>
+        </header>
+
+        <div class="main-content">
+            <div class="card upload-card">
+                <h2>上传视频</h2>
+                <p class="desc">上传一段谈话或采访视频进行抑郁症筛查分析。</p>
+
+                <div class="upload-area" id="uploadArea">
+                    <div class="upload-icon">
+                        <svg viewBox="0 0 24 24" width="48" height="48" fill="#7c8db5">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                            <polyline points="17 8 12 3 7 8"/>
+                            <line x1="12" y1="3" x2="12" y2="15"/>
+                        </svg>
+                    </div>
+                    <p class="upload-text">拖拽视频文件到此处<br>或点击浏览</p>
+                    <p class="upload-hint">支持 MP4、AVI、MOV、WMV 格式</p>
+                    <input type="file" id="fileInput" accept="video/*" hidden>
+                </div>
+
+                <div class="file-info" id="fileInfo" style="display:none;">
+                    <span class="file-name" id="fileName"></span>
+                    <button class="btn-remove" id="btnRemove">移除</button>
+                </div>
+
+                <button class="btn-analyze" id="btnAnalyze" disabled>
+                    <span class="btn-text">开始分析</span>
+                    <span class="btn-loading" style="display:none;">
+                        <span class="spinner"></span> 处理中...
+                    </span>
+                </button>
+            </div>
+
+            <div class="card result-card" id="resultCard" style="display:none;">
+                <h2>分析进度</h2>
+                <div class="progress-container">
+                    <div class="progress-bar" id="progressBar"></div>
+                    <span class="progress-text" id="progressText">0%</span>
+                </div>
+                <div class="status-text" id="statusText">等待中...</div>
+
+                <div class="result-content" id="resultContent" style="display:none;">
+                    <h2>分析结果</h2>
+                    <div class="result-main" id="resultMain"></div>
+
+                    <div class="confidence-bars">
+                        <div class="conf-item">
+                            <span class="conf-label">抑郁症</span>
+                            <div class="conf-bar-bg">
+                                <div class="conf-bar depression-bar" id="depBar"></div>
+                            </div>
+                            <span class="conf-value" id="depValue">0%</span>
+                        </div>
+                        <div class="conf-item">
+                            <span class="conf-label">正常</span>
+                            <div class="conf-bar-bg">
+                                <div class="conf-bar normal-bar" id="normBar"></div>
+                            </div>
+                            <span class="conf-value" id="normValue">0%</span>
+                        </div>
+                    </div>
+
+                    <div class="feature-info" id="featureInfo"></div>
+                </div>
+
+                <div class="error-content" id="errorContent" style="display:none;">
+                    <div class="error-icon">✕</div>
+                    <div class="error-text" id="errorText"></div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>Powered by PyTorch &bull; D-Vlog Dataset &bull; Dual-Branch ConvNet Classifier</p>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

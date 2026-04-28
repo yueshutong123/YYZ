@@ -1,0 +1,12 @@
+flask>=3.0
+numpy>=1.26
+torch>=2.0
+torchvision>=0.18
+torchaudio>=2.0
+opencv-python>=4.8
+mediapipe>=0.10
+opensmile>=2.6
+soundfile>=0.12
+librosa>=0.10
+pandas>=2.0
+scikit-learn>=1.3
